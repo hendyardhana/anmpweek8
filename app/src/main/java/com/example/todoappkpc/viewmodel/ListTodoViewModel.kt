@@ -20,7 +20,7 @@ class ListTodoViewModel (application: Application) : AndroidViewModel(applicatio
 
     private var job = Job()
     override val coroutineContext: CoroutineContext
-    get() = job + Dispatchers.IO
+        get() = job + Dispatchers.IO
 
     fun refresh() {
         loadingLD.value = true
@@ -28,11 +28,21 @@ class ListTodoViewModel (application: Application) : AndroidViewModel(applicatio
         launch {
             val db = Room.databaseBuilder(
                 getApplication(),
-                TodoDatabase.TodoDatabase::class.java, "newtododb").build()
+                TodoDatabase::class.java, "newtododb").build()
 
             todoLD.postValue(db.todoDao().selectAllTodo())
         }
     }
 
+    fun clearTask(todo: Todo) {
+        launch {
+            val db = Room.databaseBuilder(
+                getApplication(),
+                TodoDatabase::class.java, "newtododb").build()
+            db.todoDao().deleteTodo(todo)
+
+            todoLD.postValue(db.todoDao().selectAllTodo())
+        }
+    }
 
 }

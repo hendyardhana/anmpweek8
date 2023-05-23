@@ -2,19 +2,18 @@ package com.example.todoappkpc.model
 
 import androidx.room.*
 
+@Dao
 interface TodoDao {
-    @Dao
-    interface TodoDao {
-        @Insert(onConflict = OnConflictStrategy.REPLACE)
-        fun insertAll(vararg todo:Todo) //Bisa banyak object
 
-        @Query("SELECT * FROM todo")
-        fun selectAllTodo(): List<Todo>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(vararg todo:Todo) //Bisa banyak object
 
-        @Query("SELECT * FROM todo WHERE uuid= :id")
-        fun selectTodo(id:Int): Todo
+    @Query("SELECT * FROM todo")
+    abstract fun selectAllTodo(): List<Todo>
 
-        @Delete
-        fun deleteTodo(todo:Todo)
-    }
+    @Query("SELECT * FROM todo WHERE uuid= :id")
+    fun selectTodo(id:Int): Todo
+
+    @Delete
+    fun deleteTodo(todo:Todo)
 }
