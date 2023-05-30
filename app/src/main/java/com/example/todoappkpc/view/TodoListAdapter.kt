@@ -28,7 +28,7 @@ class TodoListAdapter(val todoList:ArrayList<Todo>) : RecyclerView.Adapter<TodoL
         checktask.text = todoList[position].title
     }
 
-    fun updateTodoList(newTodoList: List<Todo>) {
+    fun updateTodoList(newTodoList: ArrayList<Todo>) {
         todoList.clear()
         todoList.addAll(newTodoList)
         notifyDataSetChanged()

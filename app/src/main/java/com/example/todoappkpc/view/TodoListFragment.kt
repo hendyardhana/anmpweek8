@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoappkpc.R
+import com.example.todoappkpc.model.Todo
 import com.example.todoappkpc.viewmodel.ListTodoViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -46,7 +47,7 @@ class TodoListFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.todoLD.observe(viewLifecycleOwner, Observer {
-            todoListAdapter.updateTodoList(it)
+            todoListAdapter.updateTodoList(it as ArrayList<Todo>)
             var txtEmpty = view?.findViewById<TextView>(R.id.txtEmpty)
             if(it.isEmpty()) {
                 txtEmpty?.visibility = View.VISIBLE
