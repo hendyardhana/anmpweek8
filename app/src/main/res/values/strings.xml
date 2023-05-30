@@ -5,4 +5,8 @@
     <string name="empty">Our Todo is empty. Start create new todo now</string>
     <string name="newTodo">New To Do</string>
     <string name="addBtn">Add Todo</string>
+    <string name="radioHigh">High Priority</string>
+    <string name="radioMedium">Medium Priority</string>
+    <string name="radioLow">Low Priority</string>
+    <string name="priority">Priority</string>
 </resources>
