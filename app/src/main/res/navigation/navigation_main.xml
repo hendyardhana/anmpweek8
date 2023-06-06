@@ -14,7 +14,7 @@
             android:id="@+id/actionCreateTodo"
             app:destination="@id/createTodoFragment" />
         <action
-            android:id="@+id/actionEditTodoFragment"
+            android:id="@+id/actionEditFragment"
             app:destination="@id/editFragment" />
     </fragment>
     <fragment

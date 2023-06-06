@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -33,7 +35,10 @@ class CreateTodoFragment : Fragment() {
         btnAdd.setOnClickListener {
             val txtTitle = view.findViewById<EditText>(R.id.txtTitle)
             val txtNotes = view.findViewById<EditText>(R.id.txtNotes)
-            val todo = Todo(txtTitle.text.toString(), txtNotes.text.toString())
+            val rdoPriority = view.findViewById<RadioGroup>(R.id.radioGroupPriority)
+            val rdoValue = view.findViewById<RadioButton>(rdoPriority.checkedRadioButtonId)
+            val todo = Todo(txtTitle.text.toString(), txtNotes.text.toString(), rdoValue.tag.toString().toInt(), 0)
+
             viewModel.addTodo(todo)
             Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
             Navigation.findNavController(it).popBackStack()

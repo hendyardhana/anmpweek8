@@ -2,8 +2,9 @@ package com.example.todoappkpc.model
 
 import android.content.Context
 import androidx.room.*
+import com.example.todoappkpc.util.MIGRATION_1_2
 
-@Database(entities = [Todo::class], version =  1)
+@Database(entities = [Todo::class], version =  3)
 abstract class TodoDatabase:RoomDatabase() {
     abstract fun todoDao(): TodoDao
 
@@ -12,7 +13,8 @@ abstract class TodoDatabase:RoomDatabase() {
         private val LOCK = Any()
 
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext, TodoDatabase::class.java, "newtododb").build()
+            Room.databaseBuilder(context.applicationContext, TodoDatabase::class.java, "newtododb")
+                .addMigrations(MIGRATION_1_2).build()
 
 
 
