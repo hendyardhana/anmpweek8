@@ -38,6 +38,15 @@ class EditFragment : Fragment() {
         txtJudulTodo.text = "Edit Todo"
         btnAdd.text = "Save Edited Todo"
 
+        btnAdd?.setOnClickListener {
+            val rdoPriority = view.findViewById<RadioGroup>(R.id.radioGroupPriority)
+            val rdoValue = view.findViewById<RadioButton>(rdoPriority.checkedRadioButtonId)
+            val txtTitle = view.findViewById<EditText>(R.id.txtTitle)
+            val txtNotes = view.findViewById<EditText>(R.id.txtNotes)
+            viewmodel.update(txtTitle?.text.toString(), txtNotes?.text.toString(), rdoValue?.tag.toString().toInt(), uuid)
+            Navigation.findNavController(view).popBackStack()
+        }
+
         observeViewModel(view)
 
     }
@@ -57,15 +66,6 @@ class EditFragment : Fragment() {
                 1 -> rdoLow?.isChecked = true
                 2 -> rdoMed?.isChecked = true
                 3 -> rdoHigh?.isChecked = true
-            }
-
-            val btnAdd = view.findViewById<Button>(R.id.btnAdd)
-            val rdoPriority = view.findViewById<RadioGroup>(R.id.radioGroupPriority)
-            val rdoValue = view.findViewById<RadioButton>(rdoPriority.checkedRadioButtonId)
-
-            btnAdd?.setOnClickListener {
-                viewmodel.update(txtTitle?.text.toString(), txtNotes?.text.toString(), rdoValue?.tag.toString().toInt(), uuid)
-                Navigation.findNavController(view).popBackStack()
             }
         })
     }
