@@ -13,3 +13,11 @@ interface FragmentEditTodoInterface {
     fun onRadioClick(view: View, todo: Todo)
     fun onTodoSaveClick(view: View, todo: Todo)
 }
+
+interface DateClickListener{
+    fun onDateClick(v:View)
+}
+
+interface TimeClickListener{
+    fun onTimeClick(v:View)
+}
